@@ -49,12 +49,8 @@ const Faq = (props:IMyquotesWebpartProps) =>{
 
 
  useEffect(() =>{
-
-
+  //run main function
 getItems();
-  
-
-  
 
 },[])
 

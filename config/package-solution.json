@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "myquotes-webpart-client-side-solution",
+    "id": "d53d6afa-f9d6-4283-b757-0fe50cbac2e2",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.16.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "myquotes-webpart description"
+      },
+      "longDescription": {
+        "default": "myquotes-webpart description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "myquotes-webpart Feature",
+        "description": "The feature that activates elements of the myquotes-webpart solution.",
+        "id": "de1b4964-2550-4f4f-80fd-be1d5b6363fd",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/myquotes-webpart.sppkg"
+  }
+}

@@ -5,7 +5,7 @@
   "initialPage": "https://k6931.sharepoint.com/sites/Rupankana/_layouts/workbench.aspx",
   "serveConfigurations": {
     "default": {
-      "pageUrl": "https://contoso.sharepoint.com/sites/mySite/SitePages/myPage.aspx",
+      "pageUrl": "https://k6931.sharepoint.com/sites/Rupankana/SitePages/Home.aspx",
       "customActions": {
         "a660df10-1381-4e75-a448-c7adf5ac9bfa": {
           "location": "ClientSideExtension.ApplicationCustomizer",

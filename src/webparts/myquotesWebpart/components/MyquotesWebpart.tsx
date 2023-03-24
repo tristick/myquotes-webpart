@@ -4,9 +4,6 @@ import { useEffect, useState} from 'react';
 import { IFAQ } from '../../../interface';
 import { DetailsList, DetailsListLayoutMode, SelectionMode } from 'office-ui-fabric-react/lib/DetailsList';
 import { getFAQItems } from '../../../services/myservices';
-import { Panel } from 'office-ui-fabric-react/lib/Panel';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { useBoolean } from '@fluentui/react-hooks';
 
 let _columns =[
 
@@ -35,7 +32,7 @@ const Faq = (props:IMyquotesWebpartProps) =>{
   //const LOG_SOURCE = 'My logging';
   
   const [faqItems,setFaqItems ] = useState<IFAQ[]>([]) 
-  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
+  
   
   
   const getItems = async () => {
@@ -61,6 +58,7 @@ getItems();
 
 return (
   <>
+  <p><pre>{JSON.stringify(faqItems,null,2)}</pre></p>
   <DetailsList
             items={faqItems}
             columns={_columns}
@@ -68,17 +66,7 @@ return (
             selectionMode = {SelectionMode.none}
           
           />
-   <DefaultButton text="Open panel" onClick={openPanel} />       
-   <Panel
-        headerText="Sample panel"
-        isOpen={isOpen}
-        onDismiss={dismissPanel}
-        // You MUST provide this prop! Otherwise screen readers will just say "button" with no label.
-        closeButtonAriaLabel="Close"
-      >
-        <p><pre>{JSON.stringify(faqItems,null,2)}</pre></p>
-      </Panel>       
-          
+   
           
           </>
 )

@@ -1,10 +1,14 @@
 import { Log } from '@microsoft/sp-core-library';
 import {
-  BaseApplicationCustomizer
+  BaseApplicationCustomizer, PlaceholderName
 } from '@microsoft/sp-application-base';
-import { Dialog } from '@microsoft/sp-dialog';
+
 
 import * as strings from 'MypanelApplicationCustomizerStrings';
+import * as ReactDOM from 'react-dom';
+import * as React from 'react';
+import mypanel from './component/mytsxpanel';
+
 
 const LOG_SOURCE: string = 'MypanelApplicationCustomizer';
 
@@ -24,15 +28,18 @@ export default class MypanelApplicationCustomizer
 
   public onInit(): Promise<void> {
     Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
+    
+    const header = this.context.placeholderProvider.tryCreateContent(PlaceholderName.Top);
+    //header.domElement.innerHTML='<div><button type="button" onclick>My Panel</button></div>'
 
+    const elem: React.ReactElement = React.createElement(mypanel);
+    ReactDOM.render(elem, header.domElement);
+
+   // console.log('Myheader',header)
     let message: string = this.properties.testMessage;
     if (!message) {
       message = '(No properties were provided.)';
     }
-
-    Dialog.alert(`Hello from ${strings.Title}:\n\n${message}`).catch(() => {
-      /* handle error */
-    });
 
     return Promise.resolve();
   }

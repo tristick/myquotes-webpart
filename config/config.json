@@ -9,10 +9,19 @@
           "manifest": "./src/webparts/myquotesWebpart/MyquotesWebpartWebPart.manifest.json"
         }
       ]
+    },
+    "mypanel-application-customizer": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/mypanel/MypanelApplicationCustomizer.js",
+          "manifest": "./src/extensions/mypanel/MypanelApplicationCustomizer.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "MyquotesWebpartWebPartStrings": "lib/webparts/myquotesWebpart/loc/{locale}.js"
+    "MyquotesWebpartWebPartStrings": "lib/webparts/myquotesWebpart/loc/{locale}.js",
+    "MypanelApplicationCustomizerStrings": "lib/extensions/mypanel/loc/{locale}.js"
   }
 }

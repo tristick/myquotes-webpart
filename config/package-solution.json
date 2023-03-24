@@ -30,7 +30,13 @@
         "title": "myquotes-webpart Feature",
         "description": "The feature that activates elements of the myquotes-webpart solution.",
         "id": "de1b4964-2550-4f4f-80fd-be1d5b6363fd",
-        "version": "1.0.0.0"
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": [
+            "elements.xml",
+            "ClientSideInstance.xml"
+          ]
+        }
       }
     ]
   },

@@ -1,5 +1,9 @@
 import { SPFI } from "@pnp/sp";
-import { getSP } from "../pnpjsConfig";
+
+
+import { Itspanelprops } from "../extensions/mypanel/component/Itspanelprops";
+
+import { getSP, getSPext } from "../pnpjsConfig";
 import { IMyquotesWebpartProps } from "../webparts/myquotesWebpart/components/IMyquotesWebpartProps";
 
 
@@ -7,10 +11,32 @@ import { IMyquotesWebpartProps } from "../webparts/myquotesWebpart/components/IM
 const LIST_NAME = 'FAQ';
 
 
+
 export const getFAQItems = async (props:IMyquotesWebpartProps) => {
-    let _sp : SPFI =getSP(props.context) ;
+  let _sp :SPFI = getSP(props.context) ;
   const items =_sp.web.lists.getByTitle(LIST_NAME).items.select().orderBy('Letter',true).orderBy('Title',true)();
   console.log('FAQ items',items);
+  return items;
+    
+    
+}
+
+export const savefavourite =async (props:IMyquotesWebpartProps,appid: number) =>{
+  let _sp :SPFI = getSP(props.context) ;
+
+  const iar = _sp.web.lists.getByTitle('Favouriteitem').items.add({
+    Title: props.userDisplayName,
+    appID: String(appid)
+  });
+  console.log('Item added',iar);
+}
+
+export const getFavIds = async (props:Itspanelprops) => {
+  let _sp :SPFI = getSPext(props.contextext) ;
+  
+  let user = props.userDisplayName
+  const items =_sp.web.lists.getByTitle('Favouriteitem').items.select().filter("Title eq '"+user+"'")();
+  console.log('My fav items',items)
   return items;
     
     

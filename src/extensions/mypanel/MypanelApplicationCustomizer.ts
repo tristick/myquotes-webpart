@@ -8,6 +8,8 @@ import * as strings from 'MypanelApplicationCustomizerStrings';
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import mypanel from './component/mytsxpanel';
+import { Itspanelprops } from './component/Itspanelprops';
+
 
 
 const LOG_SOURCE: string = 'MypanelApplicationCustomizer';
@@ -18,6 +20,7 @@ const LOG_SOURCE: string = 'MypanelApplicationCustomizer';
  * You can define an interface to describe it.
  */
 export interface IMypanelApplicationCustomizerProperties {
+  description: any;
   // This is an example; replace with your own property
   testMessage: string;
 }
@@ -25,6 +28,8 @@ export interface IMypanelApplicationCustomizerProperties {
 /** A Custom Action which can be run during execution of a Client Side Application */
 export default class MypanelApplicationCustomizer
   extends BaseApplicationCustomizer<IMypanelApplicationCustomizerProperties> {
+  _isDarkTheme: any;
+  _environmentMessage: any;
 
   public onInit(): Promise<void> {
     Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
@@ -32,7 +37,13 @@ export default class MypanelApplicationCustomizer
     const header = this.context.placeholderProvider.tryCreateContent(PlaceholderName.Top);
     //header.domElement.innerHTML='<div><button type="button" onclick>My Panel</button></div>'
 
-    const elem: React.ReactElement = React.createElement(mypanel);
+    const elem: React.ReactElement<Itspanelprops> = React.createElement(mypanel,{
+      
+      userDisplayName: this.context.pageContext.user.email,
+      contextext:this.context
+    },
+      );
+
     ReactDOM.render(elem, header.domElement);
 
    // console.log('Myheader',header)

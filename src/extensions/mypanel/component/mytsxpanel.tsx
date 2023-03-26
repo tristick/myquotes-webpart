@@ -1,29 +1,46 @@
 import * as React from 'react';
 
-import { useEffect} from 'react';
+import { useEffect, useState} from 'react';
 
 import { Panel } from 'office-ui-fabric-react/lib/Panel';
 
 import { useBoolean } from '@fluentui/react-hooks';
 import { DefaultButton } from 'office-ui-fabric-react/lib/components/Button/DefaultButton/DefaultButton';
+import { getFavIds } from '../../../services/myservices';
+
+import { Ifavouriteitem } from '../../../interface';
+import { Itspanelprops } from './Itspanelprops';
 
 
 
-const mypanel = () =>{
+const mypanel = (props:Itspanelprops) =>{
 
 
   //const LOG_SOURCE = 'My logging';
   
   
   const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
-  
+  const [favItems,setFavItems ] = useState<Ifavouriteitem[]>([]) 
 
  useEffect(() =>{
   //run main function
-
+ 
 
 },[])
 
+const getmyFavIds= async () => {
+  const items = getFavIds(props);
+
+  setFavItems(( await items).map((item:any) => {
+    return {
+      Title:item.Title,
+      appID:item.appID
+    }
+
+  }));
+
+  
+}
 
 return (
   <>
@@ -31,11 +48,12 @@ return (
    <Panel
         headerText="Sample panel"
         isOpen={isOpen}
+        onOpen={getmyFavIds}
         onDismiss={dismissPanel}
         // You MUST provide this prop! Otherwise screen readers will just say "button" with no label.
         closeButtonAriaLabel="Close"
       >
-   
+   <p>{JSON.stringify(favItems,null,2)}</p>
       </Panel>       
           
           

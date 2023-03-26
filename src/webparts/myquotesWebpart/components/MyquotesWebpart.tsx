@@ -3,7 +3,8 @@ import { IMyquotesWebpartProps } from './IMyquotesWebpartProps';
 import { useEffect, useState} from 'react';
 import { IFAQ } from '../../../interface';
 import { DetailsList, DetailsListLayoutMode, SelectionMode } from 'office-ui-fabric-react/lib/DetailsList';
-import { getFAQItems } from '../../../services/myservices';
+import { getFAQItems,savefavourite } from '../../../services/myservices';
+import styles from './MyquotesWebpart.module.scss';
 
 let _columns =[
 
@@ -43,8 +44,10 @@ const Faq = (props:IMyquotesWebpartProps) =>{
         Id:item.Id,
         Title:item.Title,
         Body:item.Body,
-        Letter:item.Letter
+        Letter:item.Letter,
+        FaqLink:item.FaqLink
       }
+
     }));
 }
 
@@ -56,19 +59,35 @@ getItems();
 },[])
 
 
+let faqList: JSX.Element[]=[];
+faqItems.forEach((item,index)=>{
+  faqList.push( 
+  <div className={styles['flex-container']}>
+  <div className={styles.card}>
+    <div className={styles['card-details']}>
+      <p className={styles['text-title']}> <a href = {JSON.stringify(item.FaqLink)}>{item.Title}</a></p>
+      <p className={styles['text-body']}>{item.Body}</p>
+    </div>
+    <button onClick = {() => savefavourite(props,item.Id)} className={styles['card-button']}>Add To favourities</button>
+  </div></div>)})
+
+
+
 return (
   <>
+  
   <p><pre>{JSON.stringify(faqItems,null,2)}</pre></p>
+  {faqList}
   <DetailsList
             items={faqItems}
             columns={_columns}
             layoutMode={DetailsListLayoutMode.justified}
             selectionMode = {SelectionMode.none}
           
-          />
+  />
    
           
-          </>
+  </>
 )
 }
 

@@ -33,7 +33,7 @@
   }
 }
 
-.flex-container {
+.flexContainer {
   display: inline-block;
   flex-wrap: wrap;
   background-color: rgb(189, 190, 190);
@@ -53,7 +53,7 @@
   
  }
  
- .card-details {
+ .cardDetails {
   color: black;
   height: 100%;
   gap: .5em;
@@ -61,7 +61,7 @@
   place-content: center;
  }
  
- .card-button {
+ .cardButton {
 
   width: 80%;
   border-radius: 1rem;
@@ -74,12 +74,12 @@
  
  }
  
- .text-body {
+ .textBody {
   color: rgb(134, 134, 134);
  }
  
  /*Text*/
- .text-title {
+ .textTitle {
   font-size: 1.0em;
   font-weight: normal;
  }

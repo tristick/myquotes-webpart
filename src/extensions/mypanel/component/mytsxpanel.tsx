@@ -13,7 +13,7 @@ import { Itspanelprops } from './Itspanelprops';
 
 
 
-const mypanel = (props:Itspanelprops) =>{
+const mypanel = (props:Itspanelprops):JSX.Element =>{
 
 
   //const LOG_SOURCE = 'My logging';
@@ -28,10 +28,10 @@ const mypanel = (props:Itspanelprops) =>{
 
 },[])
 
-const getmyFavIds= async () => {
+const getmyFavIds= async () :Promise<void> => {
   const items = getFavIds(props);
 
-  setFavItems(( await items).map((item:any) => {
+  setFavItems(( await items).map((item:Ifavouriteitem) => {
     return {
       Title:item.Title,
       appID:item.appID

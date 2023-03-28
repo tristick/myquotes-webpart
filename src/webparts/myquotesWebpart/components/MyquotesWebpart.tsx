@@ -6,7 +6,8 @@ import { DetailsList, DetailsListLayoutMode, SelectionMode } from 'office-ui-fab
 import { getFAQItems,savefavourite } from '../../../services/myservices';
 import styles from './MyquotesWebpart.module.scss';
 
-let _columns =[
+
+const _columns =[
 
   {
     key:'Title',
@@ -27,7 +28,7 @@ let _columns =[
   
   ]
 
-const Faq = (props:IMyquotesWebpartProps) =>{
+const Faq = (props:IMyquotesWebpartProps):JSX.Element =>{
 
 
   //const LOG_SOURCE = 'My logging';
@@ -36,10 +37,10 @@ const Faq = (props:IMyquotesWebpartProps) =>{
   
   
   
-  const getItems = async () => {
+  const getItems = async () :Promise<void>=> {
     const items = getFAQItems(props);
     console.log('My items',items);
-    setFaqItems(( await items).map((item:any) => {
+    setFaqItems(( await items).map((item:IFAQ) => {
       return {
         Id:item.Id,
         Title:item.Title,
@@ -54,21 +55,21 @@ const Faq = (props:IMyquotesWebpartProps) =>{
 
  useEffect(() =>{
   //run main function
-getItems();
+getItems().catch(Promise.reject);
 
 },[])
 
 
-let faqList: JSX.Element[]=[];
+const  faqList: JSX.Element[]=[];
 faqItems.forEach((item,index)=>{
   faqList.push( 
-  <div className={styles['flex-container']}>
+  <div className={styles.flexContainer}>
   <div className={styles.card}>
-    <div className={styles['card-details']}>
-      <p className={styles['text-title']}> <a href = {JSON.stringify(item.FaqLink)}>{item.Title}</a></p>
-      <p className={styles['text-body']}>{item.Body}</p>
+    <div className={styles.cardDetails}>
+      <p className={styles.textTitle}> <a href = {JSON.stringify(item.FaqLink)}>{item.Title}</a></p>
+      <p className={styles.textBody}>{item.Body}</p>
     </div>
-    <button onClick = {() => savefavourite(props,item.Id)} className={styles['card-button']}>Add To favourities</button>
+    <button onClick = {() => savefavourite(props,item.Id)} className={styles.cardButton}>Add To favourities</button>
   </div></div>)})
 
 

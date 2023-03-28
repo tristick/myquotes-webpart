@@ -20,7 +20,7 @@ const LOG_SOURCE: string = 'MypanelApplicationCustomizer';
  * You can define an interface to describe it.
  */
 export interface IMypanelApplicationCustomizerProperties {
-  description: any;
+
   // This is an example; replace with your own property
   testMessage: string;
 }
@@ -28,8 +28,7 @@ export interface IMypanelApplicationCustomizerProperties {
 /** A Custom Action which can be run during execution of a Client Side Application */
 export default class MypanelApplicationCustomizer
   extends BaseApplicationCustomizer<IMypanelApplicationCustomizerProperties> {
-  _isDarkTheme: any;
-  _environmentMessage: any;
+  
 
   public onInit(): Promise<void> {
     Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
@@ -54,4 +53,12 @@ export default class MypanelApplicationCustomizer
 
     return Promise.resolve();
   }
+
+  protected onDispose(): void {
+    ReactDOM.unmountComponentAtNode(this.context.placeholderProvider.tryCreateContent(PlaceholderName.Top).domElement);
+  }
+  
 }
+
+
+
